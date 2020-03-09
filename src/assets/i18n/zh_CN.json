@@ -1,0 +1,16 @@
+{
+    "PAGES": {
+        "HOME": {
+            "TITLE": "应用正常 !"
+        }
+    },
+    "common": {
+        "validating": "验证中..."
+    },
+    "init": {
+        "title": "初始化应用",
+        "choseWorkDir": "选择hexo根目录",
+        "openDirBtn":"选择目录",
+        "choseWorkDirInvalidate": "hexo根目录不正确"
+    }
+}

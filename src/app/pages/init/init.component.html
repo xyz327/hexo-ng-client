@@ -1,0 +1,13 @@
+<nz-modal [(nzVisible)]="isVisible" [nzTitle]="'init.title'|translate" (nzOnCancel)="handleCancel()"
+    (nzOnOk)="handleOk()" nzClosable="false" nzMaskClosable="false">
+    <form [formGroup]="settingsForm">
+        <div nz-row>
+            <div nz-col nzSpan="18">
+                <input type="text" nz-input [placeholder]="'init.choseWorkDir'|translate" formControlName="workDirPath" />
+            </div>
+            <div nz-col nzSpan="6">
+                <button nz-button nzType="primary" (click)="openDir()"><i nz-icon nzType="folder-open" nzTheme="outline"></i>{{'init.openDirBtn'|translate}}</button>
+            </div>
+        </div>   
+    </form>
+</nz-modal>

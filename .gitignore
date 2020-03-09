@@ -37,8 +37,10 @@ src/**/*.js
 /libpeerconnection.log
 npm-debug.log
 testem.log
+debug.log
 /typings
 package-lock.json
+yarn-error.log
 
 # e2e
 /e2e/*.js

@@ -1,18 +1,22 @@
 import { app, BrowserWindow, screen } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
+import installExtension, { ANGULARJS_BATARANG } from 'electron-devtools-installer';
+
+import  electronHelper from "./src/electron-helper/helper";
 
 let win: BrowserWindow = null;
 const args = process.argv.slice(1),
     serve = args.some(val => val === '--serve');
 
-function createWindow(): BrowserWindow {
+function createWindow(show:boolean=true): BrowserWindow {
 
   const electronScreen = screen;
   const size = electronScreen.getPrimaryDisplay().workAreaSize;
 
   // Create the browser window.
   win = new BrowserWindow({
+    show,
     x: 0,
     y: 0,
     width: size.width,
@@ -35,11 +39,16 @@ function createWindow(): BrowserWindow {
       slashes: true
     }));
   }
+  // 安装devtools插件
+  installExtension('elgalmkoelokbchhkhacckoklkejnhcd')
+    .then((name) => console.log(`Added Extension:  ${name}`))
+    .catch((err) => console.log('An error occurred: ', err));
 
   if (serve) {
     win.webContents.openDevTools();
   }
-
+  // 初始化 electron ipc主线程和渲染线程的交互
+  electronHelper.init(win);
   // Emitted when the window is closed.
   win.on('closed', () => {
     // Dereference the window object, usually you would store window
@@ -50,13 +59,29 @@ function createWindow(): BrowserWindow {
 
   return win;
 }
+function createWindowWithLoading(){
+  let main = null
+  let loading = new BrowserWindow({show: false, frame: false})
 
+  loading.once('show', () => {
+    main =  createWindow(false);
+    main.webContents.once('dom-ready', () => {
+      console.log('main loaded')
+      main.show()
+      loading.hide()
+      loading.close()
+    })
+  })
+  loading.loadURL('src/loding.html')
+  loading.show()
+ 
+}
 try {
 
   // This method will be called when Electron has finished
   // initialization and is ready to create browser windows.
   // Some APIs can only be used after this event occurs.
-  app.on('ready', createWindow);
+  app.on('ready', createWindowWithLoading);
 
   // Quit when all windows are closed.
   app.on('window-all-closed', () => {
@@ -71,7 +96,7 @@ try {
     // On OS X it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
     if (win === null) {
-      createWindow();
+      createWindowWithLoading();
     }
   });
 

@@ -1,0 +1,21 @@
+<div nz-row style="height: 100%;">
+    <div nz-col nzSpan="1">
+        <ul nz-menu nzMode="inline">
+            <li nz-menu-item routerLink="./home" nzMatchRouter="true">
+                <i nz-icon nzType="home" nzTheme="outline" style="font-size: 20px;" nz-tooltip nzTooltipTitle="首页"
+                  nzTooltipPlacement="right"></i>
+              </li>
+            <li nz-menu-item routerLink="./settings" nzMatchRouter="true">
+              <i nz-icon nzType="setting" nzTheme="outline" style="font-size: 20px;" nz-tooltip nzTooltipTitle="全局设置"
+                nzTooltipPlacement="right"></i>
+            </li>
+            <li nz-menu-item routerLink="./about" nzMatchRouter="true">
+                <i nz-icon nzType="info-circle" nzTheme="outline" style="font-size: 20px;" nz-tooltip nzTooltipTitle="关于"
+                  nzTooltipPlacement="right"></i>
+              </li>
+          </ul>
+    </div>
+    <div nz-col nzSpan="23" style="height: 100%;">
+        <router-outlet ></router-outlet>
+    </div>
+</div>

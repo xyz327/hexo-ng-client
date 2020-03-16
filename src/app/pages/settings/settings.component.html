@@ -1,0 +1,85 @@
+<div nz-row>
+    <nz-divider nzDashed=true nzText="应用设置" nzOrientation="left"></nz-divider>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="4" nzFor="projectPath">项目路径</nz-form-label>
+        <nz-form-control [nzSpan]="14">
+            <div nz-row [nzGutter]="8">
+                <div nz-col [nzSpan]="14">
+                    <nz-input-group  [nzSuffix]="projectPath_suffix">
+                        <input nz-input id="projectPath" disabled [ngModel]="settings.workDirPath" placeholder="项目路径" />
+                    </nz-input-group>
+                    <ng-template #projectPath_suffix>
+                        <i nz-icon nz-tooltip nzTitle="项目路径" nzType="info-circle"></i>
+                    </ng-template>
+                </div>
+                <div nz-col nzSpan="8">
+                    <button nz-button nzType="danger">重新初始化</button>
+                </div>
+            </div>
+          
+        </nz-form-control>
+      
+    </nz-form-item>
+    <nz-divider nzDashed=true nzText="七牛云设置" nzOrientation="left"></nz-divider>
+   
+    <nz-form-item>
+        <nz-form-label [nzSpan]="4" nzRequired nzFor="qiniu-accessKey">accessKey</nz-form-label>
+        <nz-form-control [nzSpan]="8">
+            <nz-input-group [nzSuffix]="qiniu_suffix_accessKey">
+                <input nz-input id="qiniu-accessKey" [(ngModel)]="settings.qiniu.accessKey" placeholder="accessKey" />
+            </nz-input-group>
+            <ng-template #qiniu_suffix_accessKey>
+                <i nz-icon nz-tooltip nzTitle="accessKey" nzType="info-circle"></i>
+            </ng-template>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="4" nzRequired nzFor="qiniu-secretKey">secretKey</nz-form-label>
+        <nz-form-control [nzSpan]="8">
+            <nz-input-group [nzSuffix]="qiniu_suffix_secretKey">
+                <input nz-input id="qiniu-secretKey" [(ngModel)]="settings.qiniu.secretKey" placeholder="secretKey" />
+            </nz-input-group>
+            <ng-template #qiniu_suffix_secretKey>
+                <i nz-icon nz-tooltip nzTitle="secretKey" nzType="info-circle"></i>
+            </ng-template>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="4" nzRequired nzFor="qiniu-bucket">bucket</nz-form-label>
+        <nz-form-control [nzSpan]="8">
+            <nz-input-group [nzSuffix]="qiniu_suffix_bucket">
+                <input nz-input id="qiniu-bucket" [(ngModel)]="settings.qiniu.bucket" placeholder="bucket" />
+            </nz-input-group>
+            <ng-template #qiniu_suffix_bucket>
+                <i nz-icon nz-tooltip nzTitle="bucket" nzType="info-circle"></i>
+            </ng-template>
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-label [nzSpan]="4" nzRequired nzFor="qiniu-host">host</nz-form-label>
+        <nz-form-control [nzSpan]="8">
+            <nz-input-group [nzSuffix]="qiniu_suffix_host">
+                <input nz-input id="qiniu-host" [(ngModel)]="settings.qiniu.host" placeholder="host" />
+            </nz-input-group>
+            <ng-template #qiniu_suffix_host>
+                <i nz-icon nz-tooltip nzTitle="host" nzType="info-circle"></i>
+            </ng-template>
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-label [nzSpan]="4" nzRequired nzFor="qiniu-zone">zone</nz-form-label>
+        <nz-form-control [nzSpan]="8">
+            <nz-select [(ngModel)]="settings.qiniu.zone">
+                <nz-option *ngFor="let zone of availableZone" [nzValue]="zone.code" [nzLabel]="zone.name"></nz-option>
+            </nz-select>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-control [nzSpan]="8" [nzOffset]="4">
+            <button nz-button nzType="primary" (click)="saveSettings()" [nzLoading]="saving">
+                <i nz-icon nzType="save"></i>保存</button>
+        </nz-form-control>
+    </nz-form-item>
+</div>

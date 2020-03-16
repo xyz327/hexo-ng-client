@@ -10,7 +10,10 @@ import {Settings} from "../../data/settings";
 @Component({
   selector: 'app-init',
   templateUrl: './init.component.html',
-  styleUrls: ['./init.component.scss']
+  styleUrls: ['./init.component.scss'],
+  providers:[
+    
+  ]
 })
 export class InitComponent implements OnInit {
     settingsForm:FormGroup;
@@ -39,8 +42,11 @@ export class InitComponent implements OnInit {
         console.log('work dir path:', this.settingsForm.getRawValue()['workDirPath']);
         let settings = new Settings();
         settings.workDirPath = workDirPath;
-        this.settingsServce.save(settings);
-        this.router.navigate(['/']);
+        this.settingsServce.save(settings).then(()=>{
+            this.router.navigate(['/']);
+        }).catch(err=>{
+            console.error(err);
+        });
 
     }
 

@@ -1,0 +1,16 @@
+<nz-layout style="height: 100%;">
+    <nz-sider nzTheme="light" nzWidth=80>
+      <div class="logo"></div>
+      <ul nz-menu nzMode="inline">
+        <li nz-menu-item routerLink="./home" nzMatchRouter="true">
+            <i nz-icon nzType="home" nzTheme="outline" style="font-size: 20px;" nz-tooltip nzTooltipTitle="首页"
+              nzTooltipPlacement="right"></i>
+          </li>
+        <li nz-menu-item routerLink="./settings" nzMatchRouter="true">
+          <i nz-icon nzType="setting" nzTheme="outline" style="font-size: 20px;" nz-tooltip nzTooltipTitle="全局设置"
+            nzTooltipPlacement="right"></i>
+        </li>
+      </ul>
+    </nz-sider>
+    <router-outlet style="height: 100%;"></router-outlet>
+  </nz-layout>

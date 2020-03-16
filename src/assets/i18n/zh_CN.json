@@ -1,7 +1,15 @@
 {
-    "PAGES": {
-        "HOME": {
-            "TITLE": "应用正常 !"
+    "pages": {
+        "home":{
+            "menu":{
+                "article": "文章",
+                "tag": "标签",
+                "category": "分类"
+            }
+        },
+        "404":{
+            "title": "页面不存在",
+            "backHome": "返回首页"
         }
     },
     "common": {

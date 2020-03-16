@@ -1,0 +1,50 @@
+<!-- <nz-layout style="height: 100%;">
+  <nz-sider nzTheme="light" nzWidth=80>
+    <div class="logo"></div>
+    <ul nz-menu nzMode="inline">
+      <li nz-menu-item routerLink="/settings" nzMatchRouter="true">
+        <i nz-icon nzType="setting" nzTheme="outline" style="font-size: 20px;" nz-tooltip nzTooltipTitle="全局设置"
+          nzTooltipPlacement="right"></i>
+      </li>
+    </ul>
+  </nz-sider> -->
+  <nz-layout  style="height: 100%;">
+    <nz-sider nzTheme="light" nzWidth=400 class="article-container"style="overflow-y: scroll;" >
+      <nz-affix>
+        <div class="query-container">
+          <div style="display:inline">
+            <nz-select nzShowSearch nzAllowClear [nzPlaceHolder]="'pages.home.menu.tag'|translate"
+              (ngModelChange)="queryChange($event, 'tag')" [(ngModel)]="selectedTag">
+              <nz-option *ngFor="let tag of tags;let i = index" [nzLabel]="tag.name" [nzValue]="tag"></nz-option>
+            </nz-select>
+          </div>
+          <div style="display:inline">
+            <nz-select nzShowSearch nzAllowClear [nzPlaceHolder]="'pages.home.menu.category'|translate"
+              (ngModelChange)="queryChange($event, 'category')" [(ngModel)]="selectedCategory">
+              <nz-option *ngFor="let category of categories" [nzLabel]="category.name" [nzValue]="category">
+              </nz-option>
+            </nz-select>
+          </div>
+        </div>
+      </nz-affix>
+      <ul nz-menu nzMode="inline" >
+        <li nz-submenu [nzTitle]="'pages.home.menu.article'|translate" nzIcon="file-markdown" nzOpen>
+          <ul>
+            <li *ngFor="let post of posts;let i = index; trackBy: trackByItems" nz-menu-item [routerLink]="'preview'"
+              [queryParams]="{id:post._id, path: post.path}" nzMatchRouter="true" nz-tooltip [nzTooltipTitle]="post.title"
+              >
+              <i nz-icon nzType="file" nzTheme="outline"></i>
+              {{post.title}}
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+    </nz-sider>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+<!-- </nz-layout> -->

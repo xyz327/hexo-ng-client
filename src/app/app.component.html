@@ -1,1 +1,4 @@
-<router-outlet></router-outlet>
+<div class="app-loading" *ngIf="!inited">
+    <nz-spin class="app-loading-spin" nzSimple="false" nzSize="large"></nz-spin>
+</div>
+<router-outlet *ngIf="inited"></router-outlet>

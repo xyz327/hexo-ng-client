@@ -25,10 +25,10 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['AngularElectron'],
+    browsers: ['HexoNgClient'],
     singleRun: true,
     customLaunchers: {
-      AngularElectron: {
+      HexoNgClient: {
         base: 'Electron',
         browserWindowOptions: {
           webPreferences: {

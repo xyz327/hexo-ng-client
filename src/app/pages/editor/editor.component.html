@@ -1,0 +1,7 @@
+<div style="text-align: left;margin-top: 10px;">
+  <button nz-button style="float: right; right: 20px;margin-bottom: 10px;" [routerLink]="'../preview'" [queryParams]="{id:id}">
+    <i nz-icon nzType="arrow-left" nzTheme="outline"></i>返回</button>
+</div>
+<div id="md" appEditorMd [editormdConfig]="conf" (onEditorChange)="syncModel($event)" (onEditorLoad)="onEditorLoad($event)">
+  <textarea style="display: block;" [(ngModel)]="postRaw"></textarea>
+</div>

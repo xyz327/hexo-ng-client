@@ -1,3 +1,8 @@
-<p>
-  page-not-found works!
-</p>
+<nz-result nzStatus="404" nzTitle="404" [nzSubTitle]="'pages.404.title'|translate">
+  <div nz-result-extra>
+    <a routerLink="/" nz-button nzType="primary" routerLinkActive="active">
+      <i nz-icon nzType="rollback" nzTheme="outline"></i>
+      {{'pages.404.backHome'|translate}}
+    </a>
+  </div>
+</nz-result>

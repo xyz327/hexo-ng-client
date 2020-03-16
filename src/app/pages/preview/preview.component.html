@@ -1,0 +1,9 @@
+
+<div style="text-align: left;margin-top: 10px;">
+  <button nz-button style="float: right; right: 20px;margin-bottom: 10px;" [routerLink]="'../edit'" [queryParams]="{id:id}">
+    <i nz-icon nzType="edit" nzTheme="outline"></i>修改</button>
+</div>
+<div id="preview" appEditorMd preview="true" [editormdConfig]="conf" (onEditorLoad)="onEditorLoad($event)">
+    <textarea style="display: block;" [(ngModel)]="postRaw"></textarea>
+</div>
+

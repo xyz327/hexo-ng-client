@@ -1,14 +1,25 @@
-import { app, BrowserWindow, screen } from 'electron';
+import { app, BrowserWindow, screen ,ipcMain,dialog} from 'electron';
 import * as path from 'path';
 import * as url from 'url';
 import installExtension, { ANGULARJS_BATARANG } from 'electron-devtools-installer';
 
-import  electronHelper from "./src/electron-helper/helper";
-
 let win: BrowserWindow = null;
 const args = process.argv.slice(1),
     serve = args.some(val => val === '--serve');
-
+function  initIpcEvent(browserWindow: BrowserWindow):void{
+  // 
+  ipcMain.on('open-directory-dialog', evet=>{
+      dialog.showOpenDialog(browserWindow, {
+          properties: ['openDirectory']
+      }).then(dir=>{
+          if(dir){
+              evet.sender.send('selected-directory', dir);
+          }
+      }).catch(err=>{
+          evet.sender.send('selected-directory-error', err);
+      })
+  });
+}
 function createWindow(show:boolean=true): BrowserWindow {
 
   const electronScreen = screen;
@@ -22,6 +33,8 @@ function createWindow(show:boolean=true): BrowserWindow {
     width: size.width,
     height: size.height,
     webPreferences: {
+      // 允许加载本地资源
+      webSecurity: false,
       nodeIntegration: true,
       allowRunningInsecureContent: (serve) ? true : false,
     },
@@ -40,15 +53,15 @@ function createWindow(show:boolean=true): BrowserWindow {
     }));
   }
   // 安装devtools插件
-  installExtension('elgalmkoelokbchhkhacckoklkejnhcd')
-    .then((name) => console.log(`Added Extension:  ${name}`))
-    .catch((err) => console.log('An error occurred: ', err));
+  //installExtension('elgalmkoelokbchhkhacckoklkejnhcd')
+  //  .then((name) => console.log(`Added Extension:  ${name}`))
+  //  .catch((err) => console.log('An error occurred: ', err));
 
   if (serve) {
     win.webContents.openDevTools();
   }
   // 初始化 electron ipc主线程和渲染线程的交互
-  electronHelper.init(win);
+  initIpcEvent(win);
   // Emitted when the window is closed.
   win.on('closed', () => {
     // Dereference the window object, usually you would store window
@@ -72,7 +85,16 @@ function createWindowWithLoading(){
       loading.close()
     })
   })
-  loading.loadURL('src/loding.html')
+  if (serve) {
+    loading.webContents.openDevTools();
+    loading.loadURL('http://localhost:4200/loading.html');
+  } else {
+    loading.loadURL(url.format({
+      pathname: path.join(__dirname, 'dist/loading.html'),
+      protocol: 'file:',
+      slashes: true
+    }));
+  }
   loading.show()
  
 }
@@ -81,7 +103,7 @@ try {
   // This method will be called when Electron has finished
   // initialization and is ready to create browser windows.
   // Some APIs can only be used after this event occurs.
-  app.on('ready', createWindowWithLoading);
+  app.on('ready', createWindow);
 
   // Quit when all windows are closed.
   app.on('window-all-closed', () => {
@@ -96,7 +118,7 @@ try {
     // On OS X it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
     if (win === null) {
-      createWindowWithLoading();
+      createWindow();
     }
   });
 

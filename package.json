@@ -1,6 +1,6 @@
 {
   "name": "hexo-ng-client",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "hexo editor client buildt Angular 9 with Electron (Typescript + SASS + Hot Reload)",
   "homepage": "https://github.com/xyz327/hexo-ng-client",
   "repository": {

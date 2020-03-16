@@ -1,6 +1,6 @@
 {
   "name": "hexo-ng-client",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "hexo editor client buildt Angular 9 with Electron (Typescript + SASS + Hot Reload)",
   "homepage": "https://github.com/xyz327/hexo-ng-client",
   "author": {
@@ -35,6 +35,7 @@
     "test": "ng test",
     "e2e": "npm run build:prod && cross-env TS_NODE_PROJECT='e2e/tsconfig.e2e.json' mocha --timeout 300000 --require ts-node/register e2e/**/*.e2e.ts",
     "version": "conventional-changelog -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md",
+    "release": "standard-version",
     "lint": "ng lint"
   },
   "devDependencies": {
@@ -89,6 +90,7 @@
     "qiniu": "7.3.0",
     "rxjs": "6.5.4",
     "spectron": "10.0.1",
+    "standard-version": "7.1.0",
     "ts-node": "8.3.0",
     "tslib": "1.10.0",
     "typescript": "3.7.5",

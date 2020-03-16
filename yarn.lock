@@ -7,11 +7,6 @@
   resolved "https://registry.npm.taobao.org/7zip-bin/download/7zip-bin-5.0.3.tgz#bc5b5532ecafd923a61f2fb097e3b108c0106a3f"
   integrity sha1-vFtVMuyv2SOmHy+wl+OxCMAQaj8=
 
-"7zip@0.0.6":
-  version "0.0.6"
-  resolved "https://registry.npm.taobao.org/7zip/download/7zip-0.0.6.tgz#9cafb171af82329490353b4816f03347aa150a30"
-  integrity sha1-nK+xca+CMpSQNTtIFvAzR6oVCjA=
-
 "@angular-builders/custom-webpack@8.4.1":
   version "8.4.1"
   resolved "https://registry.npm.taobao.org/@angular-builders/custom-webpack/download/@angular-builders/custom-webpack-8.4.1.tgz#f16583afe78e104d408c263dcb0d4345ce0be570"
@@ -1147,11 +1142,6 @@
   resolved "https://registry.npm.taobao.org/@types/debug/download/@types/debug-4.1.5.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fdebug%2Fdownload%2F%40types%2Fdebug-4.1.5.tgz#b14efa8852b7768d898906613c23f688713e02cd"
   integrity sha1-sU76iFK3do2JiQZhPCP2iHE+As0=
 
-"@types/electron-devtools-installer@2.2.0":
-  version "2.2.0"
-  resolved "https://registry.npm.taobao.org/@types/electron-devtools-installer/download/@types/electron-devtools-installer-2.2.0.tgz#32ee4ebbe99b3daf9847a6d2097dc00b5de94f10"
-  integrity sha1-Mu5Ou+mbPa+YR6bSCX3AC13pTxA=
-
 "@types/eslint-visitor-keys@^1.0.0":
   version "1.0.0"
   resolved "https://registry.npm.taobao.org/@types/eslint-visitor-keys/download/@types/eslint-visitor-keys-1.0.0.tgz#1ee30d79544ca84d68d4b3cdb0af4f205663dd2d"
@@ -1258,6 +1248,13 @@
   version "1.5.2"
   resolved "https://registry.npm.taobao.org/@types/q/download/@types/q-1.5.2.tgz#690a1475b84f2a884fd07cd797c00f5f31356ea8"
   integrity sha1-aQoUdbhPKohP0HzXl8APXzE1bqg=
+
+"@types/semver@^7.1.0":
+  version "7.1.0"
+  resolved "https://registry.npm.taobao.org/@types/semver/download/@types/semver-7.1.0.tgz?cache=0&sync_timestamp=1580871311074&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fsemver%2Fdownload%2F%40types%2Fsemver-7.1.0.tgz#c8c630d4c18cd326beff77404887596f96408408"
+  integrity sha1-yMYw1MGM0ya+/3dASIdZb5ZAhAg=
+  dependencies:
+    "@types/node" "*"
 
 "@types/source-list-map@*":
   version "0.1.2"
@@ -2465,6 +2462,14 @@ builder-util-runtime@8.6.1:
   version "8.6.1"
   resolved "https://registry.npm.taobao.org/builder-util-runtime/download/builder-util-runtime-8.6.1.tgz#cf9a268fa51704de24f3c085aa8d1d1b3767d9ea"
   integrity sha1-z5omj6UXBN4k88CFqo0dGzdn2eo=
+  dependencies:
+    debug "^4.1.1"
+    sax "^1.2.4"
+
+builder-util-runtime@8.6.2:
+  version "8.6.2"
+  resolved "https://registry.npm.taobao.org/builder-util-runtime/download/builder-util-runtime-8.6.2.tgz#8270e15b012d8d3b110f3e327b0fd8b0e07b1686"
+  integrity sha1-gnDhWwEtjTsRDz4yew/YsOB7FoY=
   dependencies:
     debug "^4.1.1"
     sax "^1.2.4"
@@ -3799,11 +3804,6 @@ cross-spawn@^7.0.1:
     shebang-command "^2.0.0"
     which "^2.0.1"
 
-cross-unzip@0.0.2:
-  version "0.0.2"
-  resolved "https://registry.npm.taobao.org/cross-unzip/download/cross-unzip-0.0.2.tgz#5183bc47a09559befcf98cc4657964999359372f"
-  integrity sha1-UYO8R6CVWb78+YzEZXlkmZNZNy8=
-
 crypto-browserify@^3.11.0:
   version "3.12.0"
   resolved "https://registry.npm.taobao.org/crypto-browserify/download/crypto-browserify-3.12.0.tgz#396cf9f3137f03e4b8e532c58f698254e00f80ec"
@@ -4581,16 +4581,6 @@ electron-chromedriver@^8.0.0:
     electron-download "^4.1.1"
     extract-zip "^1.6.7"
 
-electron-devtools-installer@2.2.4:
-  version "2.2.4"
-  resolved "https://registry.npm.taobao.org/electron-devtools-installer/download/electron-devtools-installer-2.2.4.tgz#261a50337e37121d338b966f07922eb4939a8763"
-  integrity sha1-JhpQM343Eh0zi5ZvB5IutJOah2M=
-  dependencies:
-    "7zip" "0.0.6"
-    cross-unzip "0.0.2"
-    rimraf "^2.5.2"
-    semver "^5.3.0"
-
 electron-download@^4.1.1:
   version "4.1.1"
   resolved "https://registry.npm.taobao.org/electron-download/download/electron-download-4.1.1.tgz#02e69556705cc456e520f9e035556ed5a015ebe8"
@@ -4644,6 +4634,20 @@ electron-to-chromium@^1.3.322, electron-to-chromium@^1.3.363:
   version "1.3.375"
   resolved "https://registry.npm.taobao.org/electron-to-chromium/download/electron-to-chromium-1.3.375.tgz?cache=0&sync_timestamp=1583899406994&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Felectron-to-chromium%2Fdownload%2Felectron-to-chromium-1.3.375.tgz#e290d59d316024e5499057944c10d05c518b7a24"
   integrity sha1-4pDVnTFgJOVJkFeUTBDQXFGLeiQ=
+
+electron-updater@4.2.5:
+  version "4.2.5"
+  resolved "https://registry.npm.taobao.org/electron-updater/download/electron-updater-4.2.5.tgz#dbced8da6f8c6fc2dc662f2776131f5a49ce018d"
+  integrity sha1-287Y2m+Mb8LcZi8ndhMfWknOAY0=
+  dependencies:
+    "@types/semver" "^7.1.0"
+    builder-util-runtime "8.6.2"
+    fs-extra "^8.1.0"
+    js-yaml "^3.13.1"
+    lazy-val "^1.0.4"
+    lodash.isequal "^4.5.0"
+    pako "^1.0.11"
+    semver "^7.1.3"
 
 electron@8.0.1:
   version "8.0.1"
@@ -7749,6 +7753,11 @@ lodash.isarray@^3.0.0:
   resolved "https://registry.npm.taobao.org/lodash.isarray/download/lodash.isarray-3.0.4.tgz#79e4eb88c36a8122af86f844aa9bcd851b5fbb55"
   integrity sha1-eeTriMNqgSKvhvhEqpvNhRtfu1U=
 
+lodash.isequal@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.npm.taobao.org/lodash.isequal/download/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
+  integrity sha1-QVxEePK8wwEgwizhDtMib30+GOA=
+
 lodash.ismatch@^4.4.0:
   version "4.4.0"
   resolved "https://registry.npm.taobao.org/lodash.ismatch/download/lodash.ismatch-4.4.0.tgz#756cb5150ca3ba6f11085a78849645f188f85f37"
@@ -9283,7 +9292,7 @@ pacote@9.5.8:
     unique-filename "^1.1.1"
     which "^1.3.1"
 
-pako@~1.0.5:
+pako@^1.0.11, pako@~1.0.5:
   version "1.0.11"
   resolved "https://registry.npm.taobao.org/pako/download/pako-1.0.11.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fpako%2Fdownload%2Fpako-1.0.11.tgz#6c9599d340d54dfd3946380252a35705a6b992bf"
   integrity sha1-bJWZ00DVTf05RjgCUqNXBaa5kr8=

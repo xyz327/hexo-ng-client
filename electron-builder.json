@@ -1,38 +1,47 @@
 {
+  "appId": "io.github.xyz327.hexo-ng-client",
   "productName": "hexo-ng-client",
   "directories": {
     "output": "release/"
   },
-    "files": [
-        "**/*",
-        "!**/*.ts",
-        "!*.code-workspace",
-        "!LICENSE.md",
-        "!package.json",
-        "!package-lock.json",
-        "!src/",
-        "!e2e/",
-        "!hooks/",
-        "!angular.json",
-        "!_config.yml",
-        "!karma.conf.js",
-        "!tsconfig.json",
-        "!tslint.json"
-    ],
+  "files": [
+    "**/*",
+    "!**/*.ts",
+    "!*.code-workspace",
+    "!LICENSE.md",
+    "!package.json",
+    "!package-lock.json",
+    "!src/",
+    "!e2e/",
+    "!hooks/",
+    "!angular.json",
+    "!_config.yml",
+    "!karma.conf.js",
+    "!tsconfig.json",
+    "!tslint.json"
+  ],
+  "publish": [
+    {
+      "provider": "github"
+    }
+  ],
   "win": {
     "icon": "dist",
     "target": [
       "nsis"
-    ]
+    ],
+    "artifactName": "${productName}_setup_${version}.${ext}"
   },
   "mac": {
     "icon": "dist",
+    "artifactName": "${productName}_setup_${version}.${ext}",
     "target": [
       "dmg"
     ]
   },
   "linux": {
     "icon": "dist",
+    "artifactName": "${productName}_setup_${version}.${ext}",
     "target": [
       "AppImage"
     ]

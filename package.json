@@ -3,6 +3,10 @@
   "version": "0.0.2",
   "description": "hexo editor client buildt Angular 9 with Electron (Typescript + SASS + Hot Reload)",
   "homepage": "https://github.com/xyz327/hexo-ng-client",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xyz327/hexo-ng-client.git"
+  },
   "author": {
     "name": "xyz327",
     "email": "xyz327@outlook.com"
@@ -16,7 +20,7 @@
     "hexo"
   ],
   "main": "main.js",
-  "private": true,
+  "private": false,
   "scripts": {
     "postinstall": "electron-builder install-app-deps",
     "ng": "ng",
@@ -55,7 +59,6 @@
     "@angular/router": "9.0.2",
     "@ngx-translate/core": "12.1.1",
     "@ngx-translate/http-loader": "4.0.0",
-    "@types/electron-devtools-installer": "2.2.0",
     "@types/hexo": "3.8.3",
     "@types/jasmine": "3.5.6",
     "@types/jasminewd2": "2.0.8",
@@ -71,7 +74,6 @@
     "editor.md": "1.5.0",
     "electron": "8.0.1",
     "electron-builder": "22.3.2",
-    "electron-devtools-installer": "2.2.4",
     "electron-reload": "1.5.0",
     "eslint": "6.8.0",
     "eslint-plugin-import": "2.20.1",
@@ -101,8 +103,7 @@
   "engines": {
     "node": ">=10.13.0"
   },
-  "dependencies": {},
-  "config": {
-    "forge": "./forge.config.js"
+  "dependencies": {
+    "electron-updater": "4.2.5"
   }
 }

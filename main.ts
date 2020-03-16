@@ -1,27 +1,80 @@
-import { app, BrowserWindow, screen ,ipcMain,dialog} from 'electron';
+import { app, BrowserWindow, screen, ipcMain, dialog } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
-import installExtension, { ANGULARJS_BATARANG } from 'electron-devtools-installer';
-
+import { autoUpdater } from "electron-updater"
 let win: BrowserWindow = null;
+
+// 限制只可以打开一个应用, 4.x的文档
+const gotTheLock = app.requestSingleInstanceLock()
+if (!gotTheLock) {
+  app.quit()
+} else {
+  app.on('second-instance', (event, commandLine, workingDirectory) => {
+    // 当运行第二个实例时,将会聚焦到mainWindow这个窗口
+    if (win) {
+      if (win.isMinimized()) win.restore()
+      win.focus()
+      win.show()
+    }
+  })
+  // 创建 myWindow, 加载应用的其余部分, etc...
+  // app.on('ready', () => {
+  // })
+}
+
 const args = process.argv.slice(1),
-    serve = args.some(val => val === '--serve');
-function  initIpcEvent(browserWindow: BrowserWindow):void{
+  serve = args.some(val => val === '--serve');
+
+
+function initIpcEvent(browserWindow: BrowserWindow): void {
   // 
-  ipcMain.on('open-directory-dialog', evet=>{
-      dialog.showOpenDialog(browserWindow, {
-          properties: ['openDirectory']
-      }).then(dir=>{
-          if(dir){
-              evet.sender.send('selected-directory', dir);
-          }
-      }).catch(err=>{
-          evet.sender.send('selected-directory-error', err);
-      })
+  ipcMain.on('open-directory-dialog', evet => {
+    dialog.showOpenDialog(browserWindow, {
+      properties: ['openDirectory']
+    }).then(dir => {
+      if (dir) {
+        evet.sender.send('selected-directory', dir);
+      }
+    }).catch(err => {
+      evet.sender.send('selected-directory-error', err);
+    })
   });
 }
-function createWindow(show:boolean=true): BrowserWindow {
 
+//logger.transports.file.level = 'info';
+//autoUpdater.logger = logger;
+function sendStatusToWindow(text) {
+  win.webContents.send('message', text);
+}
+function initAutoUpdater(browserWindow: BrowserWindow): void {
+  autoUpdater.on('checking-for-update', () => {
+    sendStatusToWindow('Checking for update...');
+  })
+  autoUpdater.on('update-available', (info) => {
+    sendStatusToWindow('Update available.');
+  })
+  autoUpdater.on('update-not-available', (info) => {
+    sendStatusToWindow('Update not available.');
+  })
+  autoUpdater.on('error', (err) => {
+    sendStatusToWindow('Error in auto-updater. ' + err);
+  })
+  autoUpdater.on('download-progress', (progressObj) => {
+    let log_message = "Download speed: " + progressObj.bytesPerSecond;
+  log_message = log_message + ' - Downloaded ' + progressObj.percent + '%';
+  log_message = log_message + ' (' + progressObj.transferred + "/" + progressObj.total + ')';
+  sendStatusToWindow(log_message);
+  })
+  autoUpdater.on('update-downloaded', (info) => {
+    sendStatusToWindow('Update downloaded');
+    //autoUpdater.quitAndInstall();
+  })
+
+}
+function createWindow(show: boolean = true): BrowserWindow {
+  // 开始检查是否有新版本
+  autoUpdater.checkForUpdatesAndNotify();
+  //autoUpdater.checkForUpdates();
   const electronScreen = screen;
   const size = electronScreen.getPrimaryDisplay().workAreaSize;
 
@@ -62,6 +115,8 @@ function createWindow(show:boolean=true): BrowserWindow {
   }
   // 初始化 electron ipc主线程和渲染线程的交互
   initIpcEvent(win);
+
+  initAutoUpdater(win);
   // Emitted when the window is closed.
   win.on('closed', () => {
     // Dereference the window object, usually you would store window
@@ -72,12 +127,12 @@ function createWindow(show:boolean=true): BrowserWindow {
 
   return win;
 }
-function createWindowWithLoading(){
+function createWindowWithLoading() {
   let main = null
-  let loading = new BrowserWindow({show: false, frame: false})
+  let loading = new BrowserWindow({ show: false, frame: false })
 
   loading.once('show', () => {
-    main =  createWindow(false);
+    main = createWindow(false);
     main.webContents.once('dom-ready', () => {
       console.log('main loaded')
       main.show()
@@ -96,7 +151,7 @@ function createWindowWithLoading(){
     }));
   }
   loading.show()
- 
+
 }
 try {
 

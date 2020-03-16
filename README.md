@@ -1,6 +1,15 @@
 # Hexo-ng-client
 
-> hexo 的编辑器 使用 angular + electron + electronforge + typescript 构建
+> hexo 的编辑器 使用 angular + NG-ZORRO   构建
+
+使用:
+- angular
+- NG-ZORRO 
+- angular-electron
+- typescript
+- electron
+- electron-builder
+
 
 ## 已知问题
  

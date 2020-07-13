@@ -92,7 +92,7 @@
     "qiniu": "7.3.0",
     "rxjs": "6.5.4",
     "spectron": "10.0.1",
-    "standard-version": "7.1.0",
+    "standard-version": "8.0.1",
     "ts-node": "8.3.0",
     "tslib": "1.10.0",
     "typescript": "3.7.5",
